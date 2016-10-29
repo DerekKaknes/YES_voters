@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS data;
+
+SELECT lastname, firstname, sboeid, rstreetname, rzip, rzipplus, dob, gender, enrollment, status, regdate, voterhistory
+INTO data
+FROM nysboe
+WHERE assemblydistrict='70'
+AND lastvotedate > '20040101';
+
+\copy (SELECT * FROM data) TO './assembly70.csv' WITH CSV HEADER
